@@ -10,4 +10,5 @@ We should be able to count the number of URL’s that have been shortened so far
 We can accept user input as text given a prompt.
 
 A valid URL looks like: “https://www.google.com/home?userId=12345&profile=abcdef”
+
 A shortened URL could look something like: “https://myApp.com/short123”
