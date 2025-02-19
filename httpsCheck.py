@@ -8,14 +8,17 @@ domainEnd = 0
 for i in range(0, len(url)):
     if url[i] == "/":
         if url[i+1] == "/":
-           if url[i+2] == "w":
-               if url[i+3] == "w":
-                   if url[i+4] == "w":
-                       if url[i+5] == ".":
-                            textStart = int(i+5)
+            textStart = int(i+1)
         break
 shorter = url[textStart + 1:len(url)]
+print(shorter)
 
+if shorter[0] == "w":
+    if shorter[1] == "w":
+        if shorter[2] == "w":
+            if shorter[3] == ".":
+                shorter = shorter[4:len(shorter)]
+print(shorter)
 #Finds the domain
 for i in range(0, len(shorter)):
     if shorter[i] == ".":
@@ -23,6 +26,7 @@ for i in range(0, len(shorter)):
 for i in range(marker, len(shorter)):
     if shorter[i] == "/":
         domainEnd = i
+        break
 j = marker
 print(domainEnd)
 print(shorter[domainEnd -1])
