@@ -1,52 +1,29 @@
 url = str(input("Give me a URL: "))
-textStart = 0
 marker = 0
-domain = ""
-domainEnd = 0
+begin = ""
 
 #Removes the https://
-for i in range(0, len(url)):
+if url.startswith("https://"):
+    url = url[8:]
+    begin = "https://"
+elif url.startswith("http://"):
+    url = url[7:]
+    begin = "http://"
+print(url)
+#Removes the www. if it exists
+if url.startswith("www."):
+    url = url[4:]
+print(url)
+
+#Finds the main body of the url discluding all after "/""
+for i in range(len(url)):
     if url[i] == "/":
-        if url[i+1] == "/":
-            textStart = int(i+1)
-        break
-shorter = url[textStart + 1:len(url)]
-print(shorter)
-
-if shorter[0] == "w":
-    if shorter[1] == "w":
-        if shorter[2] == "w":
-            if shorter[3] == ".":
-                shorter = shorter[4:len(shorter)]
-print(shorter)
-#Finds the domain
-for i in range(0, len(shorter)):
-    if shorter[i] == ".":
         marker = i
-for i in range(marker, len(shorter)):
-    if shorter[i] == "/":
-        domainEnd = i
         break
-j = marker
-print(domainEnd)
-print(shorter[domainEnd -1])
-print(shorter[domainEnd])
-i = domainEnd
-while j < i:
-    domain += shorter[j]
-    j += 1
-    
-print(domain)
+print(marker)
+body = url[0:marker + 5]
 
-#Shortens and adds domain
-shorter = shorter[0:marker]
-if (len(shorter) <= 10): 
-    print("short")
-else:
-    max = 12 - len(domain)
-    shorter = shorter[0:max]
-    print(shorter)
-
-shortened = shorter + domain
-print(shortened)
+#compiles and prints shortened url
+newUrl = begin + body
+print(newUrl)
 
