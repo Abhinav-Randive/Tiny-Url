@@ -1,5 +1,5 @@
 import csv
-# from short_url_module import generate_short_url  # Import the function from the other module
+from httpsCheck import check_and_shorten_url  # Import the function from the other module
 
 filename = 'URL Database.csv'
 
@@ -14,9 +14,9 @@ with open(filename, 'w') as file:
         count = 1
         while True:
             url = input('Enter URL: ')
-            # short_url = generate_short_url(url)  # Generate the short URL using the imported function
+            short_url = check_and_shorten_url(url)  # Generate the short URL using the function
 
-            writer.writerow([count, url]) #short_url to be added later
+            writer.writerow([count, url, short_url])  # Write the URL and short URL to the CSV file
             count += 1
             more = input('Do you want to add more URLs? (y/n): ')
             if more.lower() != 'y':
