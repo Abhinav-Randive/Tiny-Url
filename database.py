@@ -9,14 +9,17 @@ with open(filename, 'w') as file:
     writer = csv.writer(file)
     writer.writerow(header)
 
-    more = input('Do you want to add more URLs? (y/n): ')
-    if more.lower() == 'y':
-        count = 1
-        while True:
+more = input('Do you want to add more URLs? (y/n): ')
+if more.lower() == 'y':
+    count = 1
+    while True:
             url = input('Enter URL: ')
             short_url = check_and_shorten_url(url)  # Generate the short URL using the function
 
-            writer.writerow([count, url, short_url])  # Write the URL and short URL to the CSV file
+            with open(filename, 'a') as file:
+                writer = csv.writer(file)
+                writer.writerow([count, url, short_url])  # Write the URL and short URL to the CSV file
+                
             count += 1
             more = input('Do you want to add more URLs? (y/n): ')
             if more.lower() != 'y':
