@@ -1,3 +1,5 @@
+import csv
+
 def check_and_shorten_url(url):
     marker = 0
     begin = ""
@@ -32,9 +34,24 @@ def check_and_shorten_url(url):
         if body[i] == ".":
             valid1 = True
             break
+    # Slightly adjust shortened url
+    new_url = begin + body
+
+    files = []
+    with open("URL Database.csv", 'r') as file:
+        csv_reader = csv.reader(file)
+        for row in csv_reader:
+            if len(row) == 3:
+                files.append(row)
+    files = files[1:]
+    duplicate = []
+    for i in range(len(files)):
+        if new_url == files[i][2]:
+                duplicate.append(i)
+                new_url = new_url + "/" + str(i)
+                i = 0
 
     # Compiles and prints shortened URL
-    new_url = begin + body
 
     if valid0 and valid1:
         print("URL is Valid")
@@ -43,6 +60,7 @@ def check_and_shorten_url(url):
 
     print("Shortened URL: " + new_url)
     return new_url
+
 
 if __name__ == "__main__":
     url = input("Give me a URL: ")
