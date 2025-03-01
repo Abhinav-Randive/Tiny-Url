@@ -27,25 +27,9 @@ with open(filename, 'w') as file:
                     print("Adding the URL.")
                 else:
                     print("This URL has already been added.")
-            
-            #testing reading from url database
-            
+                        
             more = input('Do you want to add more URLs? (y/n): ')
             if more.lower() != 'y':
                 break
     else:
         print('No URLs added to database.')
-    
-    #with open(filename, 'r') as file:
-    #    reader = csv.reader(file)
-    #    for row in reader:
-    #        print("Testing",row)
-    print('URLs added to database.')
-
-    #Problems:
-    #the first URL gets cut off because it replaces the header
-    #the verification only checks the first row????
-#with open(filename, 'r') as file:
-#        reader = csv.reader(file)
-#        for row in reader:
-#            print("Testing",row)
