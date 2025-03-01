@@ -6,11 +6,12 @@ filename = 'URL Database.csv'
 
 header = ['Number', 'URL', 'Short URL']
 
+### Add new URLs
 with open(filename, 'w') as file:
     with open(filename, 'a', newline = '') as file:
         readWriter = csv.writer(file)
         readWriter.writerow(header)
-    more = input('Do you want to add more URLs? (y/n): ')
+    more = input('Do you want to add URLs to the database? (y/n): ')
     if more.lower() == 'y':
         count = 1
         while True:
@@ -30,8 +31,24 @@ with open(filename, 'w') as file:
             
             more = input('Do you want to add more URLs? (y/n): ')
             if more.lower() != 'y':
+                print('URLs added to database.')
                 break
     else:
         print('No URLs added to database.')
         
-    print('URLs added to database.')
+### Enter shortened URL, receive long URL
+short = input("Would you like to input a short URL and return the longer version? (y/n): ")
+if short.lower() == 'y':
+    while True:
+        with open(filename, 'r') as file:
+        # creating a csv reader object
+            shortTestUrl = input("Enter the shortened URL: ")
+            shortReader = csv.reader(file)
+            for row in shortReader: 
+                if row[2] == shortTestUrl:
+                    print("This is the original URL: ",row[1])
+                else:
+                    print("That is not a valid shortened URL.")
+        short = input("Do you want to search for another long URL? (y/n): ")
+        if short.lower() != 'y':
+            break
